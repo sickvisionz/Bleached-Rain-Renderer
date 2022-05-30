@@ -1,7 +1,7 @@
 // Code to make algo art consisting of vertically long, skinny rectangles and circles.
 
 // Basic variables that other stuff needs
-let loops = 1600, loopsRan = 0, counter = 0, maxCount = 0, drawSpeed = 10;
+let loops = 1600, loopsRan = 0;
 let s;
 let jsonNFT;
 
@@ -48,7 +48,7 @@ function setup() {
     // color
     background(jsonNFT["Basic Data"]["Canvas Color"]);
 
-    // run code for picking shapes
+    // run code for rendering shapes
     MainThing();
 }
 
