@@ -1,7 +1,7 @@
 // Code to make algo art consisting of vertically long, skinny rectangles and circles.
 
 // Basic variables that other stuff needs
-let loops = 1600, loopsRan = 0;
+let loops = 1600, loopsRan = 0, counter = 0, maxCount = 0, drawSpeed = 10;
 let s;
 let jsonNFT;
 
@@ -38,17 +38,18 @@ function setup() {
     // Update the DOM
     // titles
     document.getElementById('theTitle').innerHTML = 'Algo Art 01 - Bleached Rain Render';
+    document.getElementById('theName').innerHTML = jsonNFT["Basic Data"]["Title"];
     document.getElementById('theColorScheme').innerHTML =
         `<b>${jsonNFT["Basic Data"]["Color Scheme Name"]}</b> color scheme used.`;
     
 
     // Set canvas
     // size
-    createCanvas(3840, 2160);
+    createCanvas(jsonNFT["Basic Data"]["Width"], jsonNFT["Basic Data"]["Height"]);
     // color
     background(jsonNFT["Basic Data"]["Canvas Color"]);
 
-    // run code for rendering shapes
+    // run code for picking shapes
     MainThing();
 }
 
@@ -83,15 +84,7 @@ function MainThing() {
         alert('Art rendered.  Enjoy!');
         noLoop();
         // save art as PNG
-        let GenerateTime = new Date();
-        let fileName = 'Bleached Rain ' + GenerateTime.getFullYear() +
-            GenerateTime.getMonth().toString().padStart(2, '0') +
-            GenerateTime.getDate().toString().padStart(2, '0') +
-            '-' + GenerateTime.getHours().toString().padStart(2, '0') +
-            GenerateTime.getMinutes().toString().padStart(2, '0') +
-            GenerateTime.getSeconds().toString().padStart(2, '0');
-        saveCanvas(fileName, 'png');
-
+        saveCanvas(jsonNFT["Basic Data"]["Title"], 'png');
         return;
     }
 
