@@ -115,7 +115,8 @@ function MainThing() {
     s.ShapeSize2 = jsonNFT["Shape Data"]["Shape " + loopsRan]["Shape Details"].Size2;
     // get stuff that was added later and isn't in earlier JSONs
     try {
-        s.Shadow = jsonNFT["Shape Data"]["Shape " + loopsRan]["Shape Details"].Shadow;
+        s.Shadow = jsonNFT["Shape Data"]["Shape " + loopsRan]["Shape Details"].Shadow == "true";
+
     } catch {
         s.Shadow = false;
     }
