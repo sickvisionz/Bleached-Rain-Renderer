@@ -20,9 +20,22 @@ class myShape {
         this.ShapeSize1 = shapesize1;
         this.ShapeSize2 = shapesize2;
         this.ShapeType = '';
+        this.Shadow;
     }
 }
 
+function defineShadows(useShadows) {
+    if (useShadows == true) {
+        drawingContext.shadowOffsetX = 5;
+        drawingContext.shadowOffsetY = 5;
+        drawingContext.shadowBlur = 25;
+    } else {
+        drawingContext.shadowOffsetX = 0;
+        drawingContext.shadowOffsetY = 0;
+        drawingContext.shadowBlur = 0;
+    }
+    drawingContext.shadowColor = 'black';
+}
 
 function setup() {
     // double check for empty json box
@@ -64,6 +77,7 @@ function draw() {
         strokeWeight(s.BorderWeight);
         stroke(s.BorderColor);
         fill(s.ShapeColor);
+        defineShadows(s.Shadow);
         if (s.ShapeType == 'Circle') {
             // Circle
             circle(s.ShapeX, s.ShapeY, s.ShapeSize1);
@@ -99,6 +113,13 @@ function MainThing() {
     s.ShapeY = jsonNFT["Shape Data"]["Shape " + loopsRan]["Shape Details"].Y;
     s.ShapeSize1 = jsonNFT["Shape Data"]["Shape " + loopsRan]["Shape Details"].Size1;
     s.ShapeSize2 = jsonNFT["Shape Data"]["Shape " + loopsRan]["Shape Details"].Size2;
+    // get stuff that was added later and isn't in earlier JSONs
+    try {
+        s.Shadow = jsonNFT["Shape Data"]["Shape " + loopsRan]["Shape Details"].Shadow;
+    } catch {
+        s.Shadow = false;
+    }
+
     
     // draw it
     redraw();
